@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import {
   Alert,
   Animated,
@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
   Text,
-  LogBox
+  LogBox,
 } from 'react-native';
 import {CurvedBottomBar} from 'react-native-curved-bottom-bar';
 import {NavigationContainer} from '@react-navigation/native';
@@ -72,7 +72,7 @@ const TabBar = () => {
     <View style={{flex: 1}}>
       <NavigationContainer>
         <CurvedBottomBar.Navigator
-        screenOptions={{headerShown:false}}
+          screenOptions={{headerShown: false}}
           style={styles.bottomBar}
           height={55}
           circleWidth={50}
@@ -89,7 +89,11 @@ const TabBar = () => {
                 onPress={() => navigate('Screen1')}>
                 <Image
                   source={require('../Assets/search.png')}
-                  style={{height: 25, width: 25,transform:[{rotate:'45deg'}]}}
+                  style={{
+                    height: 25,
+                    width: 25,
+                    transform: [{rotate: '45deg'}],
+                  }}
                 />
               </TouchableOpacity>
             </Animated.View>
@@ -115,6 +119,7 @@ const TabBar = () => {
             component={Screen4}
             position="RIGHT"
           />
+          <CurvedBottomBar.Screen name="Screen1" component={Screen1} />
         </CurvedBottomBar.Navigator>
       </NavigationContainer>
     </View>
@@ -129,8 +134,7 @@ export const styles = StyleSheet.create({
   button: {
     marginVertical: 5,
   },
-  bottomBar: {
-  },
+  bottomBar: {},
   btnCircle: {
     width: 55,
     height: 55,
@@ -144,7 +148,7 @@ export const styles = StyleSheet.create({
       width: 0,
       height: 0.5,
     },
-    transform:[{rotate:'-45deg'}],
+    transform: [{rotate: '-45deg'}],
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 1,

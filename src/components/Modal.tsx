@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Modal, Alert, StyleSheet, FlatList} from 'react-native';
+import {View, Text, Modal, Alert, StyleSheet, FlatList, Button} from 'react-native';
 import CheckBox from 'react-native-check-box';
 import {texts} from '../constants/text';
 
@@ -58,6 +58,7 @@ function IndexModal(props: any) {
             isChecked={!other}
           />
         </View>
+        <Button title='Press' onPress={()=>props.onClose()}/>
       </View>
     </Modal>
   );

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useCallback} from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {View, Text, FlatList, TouchableOpacity, LogBox} from 'react-native';
 import Header from '../components/Header';
@@ -41,9 +41,9 @@ function StockDetails() {
     let StockArraydata = [];
     for (let i = 0; i < 20; i++) {
       StockArraydata.push({
-        companyName: 'AKZOINDIA',
+        companyName: Math.random(),
         index: 'NSE',
-        value: '2221.00',
+        value: Math.floor(Math.random()*999),
         dayValue: '35.15',
         percentage: '1.65',
         id: i,
@@ -52,12 +52,23 @@ function StockDetails() {
     setStockData(StockArraydata);
   };
 
+  const onViewableItemsChanged = useCallback(({ viewableItems, changed }:any) => {
+    console.log("Visible items are", viewableItems);
+    console.log("Changed in this iteration", changed);
+}, []);
+
+const _viewabilityConfig = {
+    itemVisiblePercentThreshold: 50
+}
+
   return (
     <View style={{flex: 1}}>
       <Header />
       {componentHeaderBlock()}
       <View style={{height: 500}}>
         <FlatList
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={_viewabilityConfig}
           data={stockData}
           renderItem={({item}) => (
             <View style={styles.stock}>

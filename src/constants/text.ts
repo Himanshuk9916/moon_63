@@ -10,5 +10,5 @@ export const texts={
     EXTRA:'Extra',
     ADD:'Add',
     NIFTY:'Nifty',
-    OTHER:'Other'
+    OTHER:'OTHER'
 }
