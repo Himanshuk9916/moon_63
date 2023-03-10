@@ -1,26 +1,33 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, Modal, Alert, StyleSheet, FlatList, Button} from 'react-native';
 import CheckBox from 'react-native-check-box';
 import {texts} from '../constants/text';
 
 function IndexModal(props: any) {
-  const [nifty, setNifty] = useState(props.niftyValue);
-  const [senSex, setSenSex] = useState(props.sensexValue);
-  const [other, setOther] = useState(props.otherValue);
+//Note-Temporarily commented for checking only
 
-  const updateState = (text: any) => {
-    switch (text) {
-      case 'Nifty':
-        setNifty((prev:any)=>!prev);
-        return props.getData(text, !nifty);
-      case 'SenSex':
-        setSenSex((prev:any)=>!prev);
-        return props.getData(text, !senSex);
-      case 'Other':
-        setOther((prev:any)=>!prev);
-        return props.getData(text, !other);
-    }
-  };
+
+  // const [nifty, setNifty] = useState(props.niftyValue);
+  // const [senSex, setSenSex] = useState(props.sensexValue);
+  // const [other, setOther] = useState(props.otherValue);
+
+
+  // const updateState = (text: any) => {
+    // updateData(text)
+  //   switch (text) {
+  //     case 'Nifty':
+  //       setNifty((prevState:any)=>!prevState);
+  //       return props.getData(text,!nifty);
+  //     case 'SenSex':
+  //       setSenSex((prevState:any)=>!prevState);
+  //       return props.getData(text,!senSex);
+  //     case 'Other':
+  //       setOther((prevState: any)=>!prevState);
+  //       return props.getData(text,other);
+  //   }
+  // };
+
+ 
 
   return (
     <Modal
@@ -35,27 +42,30 @@ function IndexModal(props: any) {
           <Text>{texts.NIFTY}</Text>
           <CheckBox
             onClick={() => {
-              updateState('Nifty');
+              // updateState('Nifty');
+              props.anyFunction('Nifty')
             }}
-            isChecked={nifty}
+            isChecked={props.niftyValue}
           />
         </View>
         <View style={styles.modalContentView}>
           <Text>{texts.SENSEX}</Text>
           <CheckBox
             onClick={() => {
-              updateState('SenSex');
+              // updateState('SenSex');
+              props.anyFunction('SenSex')
             }}
-            isChecked={senSex}
+            isChecked={props.sensexValue}
           />
         </View>
         <View style={styles.modalContentView}>
           <Text>{texts.OTHER}</Text>
           <CheckBox
             onClick={() => {
-              updateState('Other');
+              // updateState('Other');
+              props.anyFunction('Other')
             }}
-            isChecked={other}
+            isChecked={props.otherValue}
           />
         </View>
         <Button title='Press' onPress={()=>props.onClose()}/>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {texts} from '../constants/text';
 import {colors} from '../constants/colors';
@@ -16,7 +16,7 @@ function Header(props: any) {
         <View>{/* <Text>View1</Text> */}</View>
         <View style={{alignItems: 'center'}}>
           <Text style={styles.nifty_value_text}>
-             {otherValue? texts.OTHER:texts.NIFTY_50}
+             {otherValue.toString()}
           </Text>
           <Text style={styles.nifty_value_text}>{texts[17755]}</Text>
           <Text style={styles.niftyValue}>{texts[160]}</Text>
@@ -52,26 +52,45 @@ function Header(props: any) {
       </View>
     );
   };
+
   const onClose = () => {
     setModalVisible(prev => !prev);
   };
 
-  const getData = (data: any, name: any) => {
-    if (data == 'Nifty') {
-      setNiftyValue(name);
-    } else if (data == 'SenSex') {
-      setSenSexValue(name);
-    } else {
-      setOtherValue(name);
+  // const getData = (name: any, data: any) => {
+  //   console.log(`Name=${name} - Data=${data}`)
+  //  switch(name){
+  //   case 'Nifty': setNiftyValue(data);
+  //   break;
+  //   case 'SenSex': setSenSexValue(data);
+  //   break;
+  //   case 'Other':setOtherValue(data);
+  //   break;
+  //   default : null
+  //  }
+  // };
+
+  const anyFunction=(text:any)=>{
+    console.log('Text',text)
+    switch(text){
+      case 'Nifty':setNiftyValue(!niftyValue);
+      break;
+      case 'SenSex':setSenSexValue(!sensexValue);
+      break;
+      case 'Other':setOtherValue(!otherValue);
+      break;
+
+      default : null
     }
-  };
+  }
 
   return (
     <>
       <IndexModal
         visible={modalVisible}
         onClose={onClose}
-        getData={(items: any, name: any) => getData(items, name)}
+        anyFunction={anyFunction}
+        // getData={(items: any, name: any) => getData(items, name)}
         niftyValue={niftyValue}
         sensexValue={sensexValue}
         otherValue={otherValue}
