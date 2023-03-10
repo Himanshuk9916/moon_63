@@ -15,9 +15,10 @@ function App(){
   }
 
   return(
-    <ThemeContext.Provider value={{globaltheme,toggleTheme}}>
-    <StackNavigation />
-    </ThemeContext.Provider>
+    // <ThemeContext.Provider value={{globaltheme,toggleTheme}}>
+    // <StackNavigation />
+    // </ThemeContext.Provider>
+    <TabBar />
   )
 }
 

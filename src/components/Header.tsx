@@ -6,9 +6,9 @@ import IndexModal from './Modal';
 
 function Header(props: any) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [nifty, setNifty] = useState(true);
-  const [sensex, setSenSex] = useState(true);
-  const [other, setOther] = useState(false);
+  const [niftyValue, setNiftyValue] = useState(true);
+  const [sensexValue, setSenSexValue] = useState(true);
+  const [otherValue, setOtherValue] = useState(false);
 
   const niftyView = () => {
     return (
@@ -16,7 +16,7 @@ function Header(props: any) {
         <View>{/* <Text>View1</Text> */}</View>
         <View style={{alignItems: 'center'}}>
           <Text style={styles.nifty_value_text}>
-            {other ? texts.OTHER : texts.NIFTY_50}
+             {otherValue? texts.OTHER:texts.NIFTY_50}
           </Text>
           <Text style={styles.nifty_value_text}>{texts[17755]}</Text>
           <Text style={styles.niftyValue}>{texts[160]}</Text>
@@ -58,13 +58,12 @@ function Header(props: any) {
 
   const getData = (data: any, name: any) => {
     if (data == 'Nifty') {
-      setNifty(name);
+      setNiftyValue(name);
     } else if (data == 'SenSex') {
-      setSenSex(name);
+      setSenSexValue(name);
     } else {
-      setOther(name);
+      setOtherValue(name);
     }
-    console.log('nifty',nifty,'sensex',sensex,'other',other)
   };
 
   return (
@@ -73,9 +72,9 @@ function Header(props: any) {
         visible={modalVisible}
         onClose={onClose}
         getData={(items: any, name: any) => getData(items, name)}
-        nifty={nifty}
-        sensex={sensex}
-        other={other}
+        niftyValue={niftyValue}
+        sensexValue={sensexValue}
+        otherValue={otherValue}
       />
       <View style={styles.container}>
         <View style={styles.headerView}>

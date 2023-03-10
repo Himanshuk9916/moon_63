@@ -53,8 +53,8 @@ function StockDetails() {
   };
 
   const onViewableItemsChanged = useCallback(({ viewableItems, changed }:any) => {
-    console.log("Visible items are", viewableItems);
-    console.log("Changed in this iteration", changed);
+    // console.log("Visible items are", viewableItems);
+    // console.log("Changed in this iteration", changed);
 }, []);
 
 const _viewabilityConfig = {

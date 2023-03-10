@@ -4,21 +4,21 @@ import CheckBox from 'react-native-check-box';
 import {texts} from '../constants/text';
 
 function IndexModal(props: any) {
-  const [nifty, setNifty] = useState(props.nifty);
-  const [senSex, setSenSex] = useState(props.sensex);
-  const [other, setOther] = useState(true);
+  const [nifty, setNifty] = useState(props.niftyValue);
+  const [senSex, setSenSex] = useState(props.sensexValue);
+  const [other, setOther] = useState(props.otherValue);
 
   const updateState = (text: any) => {
     switch (text) {
       case 'Nifty':
-        setNifty((prev: any) => !prev);
+        setNifty((prev:any)=>!prev);
         return props.getData(text, !nifty);
       case 'SenSex':
-        setSenSex((prev: any) => !prev);
+        setSenSex((prev:any)=>!prev);
         return props.getData(text, !senSex);
       case 'Other':
-        setOther(!other);
-        return props.getData(text, other);
+        setOther((prev:any)=>!prev);
+        return props.getData(text, !other);
     }
   };
 
@@ -55,7 +55,7 @@ function IndexModal(props: any) {
             onClick={() => {
               updateState('Other');
             }}
-            isChecked={!other}
+            isChecked={other}
           />
         </View>
         <Button title='Press' onPress={()=>props.onClose()}/>
