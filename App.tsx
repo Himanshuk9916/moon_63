@@ -2,7 +2,6 @@ import React,{useState,useEffect} from "react";
 import TabBar from "./src/navigationP/TabNavigation";
 import StackNavigation from "./src2/navigation/stack";
 import ThemeContext,{theme} from "./src2/context/appcontext";
-import ModalContext,{ModalData} from "./src/context/ModalContext";
 import { Alert } from "react-native";
 
 // function App(){

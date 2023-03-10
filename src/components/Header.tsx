@@ -16,7 +16,7 @@ function Header(props: any) {
         <View>{/* <Text>View1</Text> */}</View>
         <View style={{alignItems: 'center'}}>
           <Text style={styles.nifty_value_text}>
-             {otherValue.toString()}
+             {niftyValue.toString()}
           </Text>
           <Text style={styles.nifty_value_text}>{texts[17755]}</Text>
           <Text style={styles.niftyValue}>{texts[160]}</Text>
@@ -73,11 +73,11 @@ function Header(props: any) {
   const anyFunction=(text:any)=>{
     console.log('Text',text)
     switch(text){
-      case 'Nifty':setNiftyValue(!niftyValue);
+      case 'Nifty':setNiftyValue((prevState:any)=>!prevState);
       break;
-      case 'SenSex':setSenSexValue(!sensexValue);
+      case 'SenSex':setSenSexValue((prevState:any)=>!prevState);
       break;
-      case 'Other':setOtherValue(!otherValue);
+      case 'Other':setOtherValue((prevState:any)=>!prevState);
       break;
 
       default : null

@@ -42,7 +42,6 @@ function IndexModal(props: any) {
           <Text>{texts.NIFTY}</Text>
           <CheckBox
             onClick={() => {
-              // updateState('Nifty');
               props.anyFunction('Nifty')
             }}
             isChecked={props.niftyValue}
@@ -52,7 +51,6 @@ function IndexModal(props: any) {
           <Text>{texts.SENSEX}</Text>
           <CheckBox
             onClick={() => {
-              // updateState('SenSex');
               props.anyFunction('SenSex')
             }}
             isChecked={props.sensexValue}
@@ -62,7 +60,6 @@ function IndexModal(props: any) {
           <Text>{texts.OTHER}</Text>
           <CheckBox
             onClick={() => {
-              // updateState('Other');
               props.anyFunction('Other')
             }}
             isChecked={props.otherValue}

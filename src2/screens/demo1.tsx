@@ -7,6 +7,7 @@ function Demo1(){
     const navigation=useNavigation<any>()
     const {globaltheme,toggleTheme}=useContext(ThemeContext)
     console.log('DemoScreen1',globaltheme)
+    console.log('Function',toggleTheme)
 
     const anyFunction=()=>{
         toggleTheme()
