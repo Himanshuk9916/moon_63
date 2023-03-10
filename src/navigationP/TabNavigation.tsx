@@ -119,7 +119,11 @@ const TabBar = () => {
             component={Screen4}
             position="RIGHT"
           />
-          <CurvedBottomBar.Screen name="Screen1" component={Screen1} />
+          <CurvedBottomBar.Screen
+            name="Screen1"
+            component={Screen1}
+            position="CIRCLE"
+          />
         </CurvedBottomBar.Navigator>
       </NavigationContainer>
     </View>

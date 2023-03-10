@@ -41,7 +41,7 @@ function StockDetails() {
     let StockArraydata = [];
     for (let i = 0; i < 20; i++) {
       StockArraydata.push({
-        companyName: Math.random(),
+        companyName: Math.floor(Math.random()*99),
         index: 'NSE',
         value: Math.floor(Math.random()*999),
         dayValue: '35.15',

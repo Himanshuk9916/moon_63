@@ -64,6 +64,7 @@ function Header(props: any) {
     } else {
       setOther(name);
     }
+    console.log('nifty',nifty,'sensex',sensex,'other',other)
   };
 
   return (
@@ -74,6 +75,7 @@ function Header(props: any) {
         getData={(items: any, name: any) => getData(items, name)}
         nifty={nifty}
         sensex={sensex}
+        other={other}
       />
       <View style={styles.container}>
         <View style={styles.headerView}>
