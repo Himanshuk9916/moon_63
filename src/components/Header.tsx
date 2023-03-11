@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {texts} from '../constants/text';
 import {colors} from '../constants/colors';
@@ -9,6 +9,10 @@ function Header(props: any) {
   const [niftyValue, setNiftyValue] = useState(true);
   const [sensexValue, setSenSexValue] = useState(true);
   const [otherValue, setOtherValue] = useState(false);
+
+  useEffect(()=>{
+      console.log('Value',niftyValue,sensexValue,otherValue)
+  },[niftyValue,sensexValue,otherValue])
 
   const niftyView = () => {
     return (
@@ -57,21 +61,7 @@ function Header(props: any) {
     setModalVisible(prev => !prev);
   };
 
-  // const getData = (name: any, data: any) => {
-  //   console.log(`Name=${name} - Data=${data}`)
-  //  switch(name){
-  //   case 'Nifty': setNiftyValue(data);
-  //   break;
-  //   case 'SenSex': setSenSexValue(data);
-  //   break;
-  //   case 'Other':setOtherValue(data);
-  //   break;
-  //   default : null
-  //  }
-  // };
-
-  const anyFunction=(text:any)=>{
-    console.log('Text',text)
+  const changeIndex=(text:any)=>{
     switch(text){
       case 'Nifty':setNiftyValue((prevState:any)=>!prevState);
       break;
@@ -89,8 +79,7 @@ function Header(props: any) {
       <IndexModal
         visible={modalVisible}
         onClose={onClose}
-        anyFunction={anyFunction}
-        // getData={(items: any, name: any) => getData(items, name)}
+        changeIndex={changeIndex}
         niftyValue={niftyValue}
         sensexValue={sensexValue}
         otherValue={otherValue}

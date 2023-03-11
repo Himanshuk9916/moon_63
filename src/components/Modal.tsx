@@ -4,30 +4,6 @@ import CheckBox from 'react-native-check-box';
 import {texts} from '../constants/text';
 
 function IndexModal(props: any) {
-//Note-Temporarily commented for checking only
-
-
-  // const [nifty, setNifty] = useState(props.niftyValue);
-  // const [senSex, setSenSex] = useState(props.sensexValue);
-  // const [other, setOther] = useState(props.otherValue);
-
-
-  // const updateState = (text: any) => {
-    // updateData(text)
-  //   switch (text) {
-  //     case 'Nifty':
-  //       setNifty((prevState:any)=>!prevState);
-  //       return props.getData(text,!nifty);
-  //     case 'SenSex':
-  //       setSenSex((prevState:any)=>!prevState);
-  //       return props.getData(text,!senSex);
-  //     case 'Other':
-  //       setOther((prevState: any)=>!prevState);
-  //       return props.getData(text,other);
-  //   }
-  // };
-
- 
 
   return (
     <Modal
@@ -42,7 +18,7 @@ function IndexModal(props: any) {
           <Text>{texts.NIFTY}</Text>
           <CheckBox
             onClick={() => {
-              props.anyFunction('Nifty')
+              props.changeIndex('Nifty')
             }}
             isChecked={props.niftyValue}
           />
@@ -51,7 +27,7 @@ function IndexModal(props: any) {
           <Text>{texts.SENSEX}</Text>
           <CheckBox
             onClick={() => {
-              props.anyFunction('SenSex')
+              props.changeIndex('SenSex')
             }}
             isChecked={props.sensexValue}
           />
@@ -60,7 +36,7 @@ function IndexModal(props: any) {
           <Text>{texts.OTHER}</Text>
           <CheckBox
             onClick={() => {
-              props.anyFunction('Other')
+              props.changeIndex('Other')
             }}
             isChecked={props.otherValue}
           />
