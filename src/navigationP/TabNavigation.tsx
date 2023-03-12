@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {CurvedBottomBar} from 'react-native-curved-bottom-bar';
 import {NavigationContainer} from '@react-navigation/native';
-import Screen1 from '../screens/Screen1';
+import Login from '../screens/Login';
 import Screen2 from '../screens/Screen2';
 import Screen3 from '../screens/Screen3';
 import Screen4 from '../screens/Screen4';
@@ -86,7 +86,7 @@ const TabBar = () => {
                   flex: 1,
                   justifyContent: 'center',
                 }}
-                onPress={() => navigate('Screen1')}>
+                onPress={() => navigate('Login')}>
                 <Image
                   source={require('../Assets/search.png')}
                   style={{
@@ -121,7 +121,7 @@ const TabBar = () => {
           />
           <CurvedBottomBar.Screen
             name="Screen1"
-            component={Screen1}
+            component={Login}
             position="CIRCLE"
           />
         </CurvedBottomBar.Navigator>

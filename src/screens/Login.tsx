@@ -1,10 +1,10 @@
 import React from "react";
 import {View,Text} from 'react-native';
 
-function Screen1(){
+function Login(){
     return(
-        <Text>Screen 1</Text>
+        <Text>Login Screen</Text>
     )
 }
 
-export default Screen1;
+export default Login;

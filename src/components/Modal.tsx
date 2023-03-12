@@ -1,10 +1,17 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, Modal, Alert, StyleSheet, FlatList, Button} from 'react-native';
+import {
+  View,
+  Text,
+  Modal,
+  Alert,
+  StyleSheet,
+  FlatList,
+  Button,
+} from 'react-native';
 import CheckBox from 'react-native-check-box';
 import {texts} from '../constants/text';
 
 function IndexModal(props: any) {
-
   return (
     <Modal
       animationType="slide"
@@ -18,7 +25,7 @@ function IndexModal(props: any) {
           <Text>{texts.NIFTY}</Text>
           <CheckBox
             onClick={() => {
-              props.changeIndex('Nifty')
+              props.changeIndex('Nifty');
             }}
             isChecked={props.niftyValue}
           />
@@ -27,7 +34,7 @@ function IndexModal(props: any) {
           <Text>{texts.SENSEX}</Text>
           <CheckBox
             onClick={() => {
-              props.changeIndex('SenSex')
+              props.changeIndex('SenSex');
             }}
             isChecked={props.sensexValue}
           />
@@ -36,12 +43,16 @@ function IndexModal(props: any) {
           <Text>{texts.OTHER}</Text>
           <CheckBox
             onClick={() => {
-              props.changeIndex('Other')
+              props.changeIndex('Other');
             }}
             isChecked={props.otherValue}
           />
         </View>
-        <Button title='Press' onPress={()=>props.onClose()}/>
+        <Button
+          title="Press"
+          onPress={() => props.onClose()}
+          disabled={props.niftyValue && props.sensexValue && props.otherValue}
+        />
       </View>
     </Modal>
   );

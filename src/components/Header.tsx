@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {texts} from '../constants/text';
 import {colors} from '../constants/colors';
 import IndexModal from './Modal';
+import FlashMessage, {showMessage} from 'react-native-flash-message';
 
 function Header(props: any) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -10,18 +11,29 @@ function Header(props: any) {
   const [sensexValue, setSenSexValue] = useState(true);
   const [otherValue, setOtherValue] = useState(false);
 
-  useEffect(()=>{
-      console.log('Value',niftyValue,sensexValue,otherValue)
-  },[niftyValue,sensexValue,otherValue])
+  useEffect(() => {
+    // if(otherValue == true){
+    //   setNiftyValue(false)
+    // }else if(otherValue == false){
+    //   setNiftyValue(true)
+    // }
+    if (niftyValue && sensexValue && otherValue) {
+      showMessage({
+        message: 'Information',
+        description: 'Please select any two indices',
+        type: 'danger',
+      });
+    }
+
+    console.log('Value', niftyValue, sensexValue, otherValue);
+  }, [niftyValue, sensexValue, otherValue]);
 
   const niftyView = () => {
     return (
       <View style={styles.niftyContainerView}>
         <View>{/* <Text>View1</Text> */}</View>
         <View style={{alignItems: 'center'}}>
-          <Text style={styles.nifty_value_text}>
-             {niftyValue.toString()}
-          </Text>
+          <Text style={styles.nifty_value_text}>{niftyValue.toString()}</Text>
           <Text style={styles.nifty_value_text}>{texts[17755]}</Text>
           <Text style={styles.niftyValue}>{texts[160]}</Text>
         </View>
@@ -61,18 +73,22 @@ function Header(props: any) {
     setModalVisible(prev => !prev);
   };
 
-  const changeIndex=(text:any)=>{
-    switch(text){
-      case 'Nifty':setNiftyValue((prevState:any)=>!prevState);
-      break;
-      case 'SenSex':setSenSexValue((prevState:any)=>!prevState);
-      break;
-      case 'Other':setOtherValue((prevState:any)=>!prevState);
-      break;
+  const changeIndex = (text: any) => {
+    switch (text) {
+      case 'Nifty':
+        setNiftyValue((prevState: any) => !prevState);
+        break;
+      case 'SenSex':
+        setSenSexValue((prevState: any) => !prevState);
+        break;
+      case 'Other':
+        setOtherValue((prevState: any) => !prevState);
+        break;
 
-      default : null
+      default:
+        null;
     }
-  }
+  };
 
   return (
     <>
@@ -89,6 +105,12 @@ function Header(props: any) {
           {niftyView()}
           {sensexView()}
         </View>
+        <FlashMessage
+          position={'top'}
+          animated={true}
+          animationDuration={1000}
+          floating={true}
+        />
       </View>
     </>
   );
