@@ -3,6 +3,7 @@ import TabBar from "./src/navigationP/TabNavigation";
 import StackNavigation from "./src2/navigation/stack";
 import ThemeContext,{theme} from "./src2/context/appcontext";
 import { Alert } from "react-native";
+import Login from "./src/screens/Login";
 
 // function App(){
 //   const [globaltheme,setGlobalTheme]=useState(theme.light)
@@ -25,7 +26,8 @@ import { Alert } from "react-native";
 function App(){
   
   return(
-    <TabBar />
+    // <TabBar />
+    <Login />
   )
 }
 

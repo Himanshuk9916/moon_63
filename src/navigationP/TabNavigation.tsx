@@ -120,7 +120,7 @@ const TabBar = () => {
             position="RIGHT"
           />
           <CurvedBottomBar.Screen
-            name="Screen1"
+            name="Login"
             component={Login}
             position="CIRCLE"
           />
