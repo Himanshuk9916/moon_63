@@ -7,6 +7,13 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       paddingVertical: 20,
     },
+    containerBlur:{
+      flex: 1,
+      justifyContent: 'space-between',
+      paddingHorizontal: 10,
+      paddingVertical: 20,
+      opacity:0.5
+    },
     headerView: {
       height: '17%',
       justifyContent: 'space-around',
@@ -41,15 +48,6 @@ const styles = StyleSheet.create({
     registerText: {
       color: 'blue',
       fontWeight: 'bold',
-    },
-    modalView:{
-        position: 'absolute',
-        top: 300,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor: 'white',
-        borderWidth: 1,
     },
     newUserSignupContainer:{
       backgroundColor: 'black',

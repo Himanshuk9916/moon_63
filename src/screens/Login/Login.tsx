@@ -38,7 +38,7 @@ function Login() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={modalVisible?styles.containerBlur:styles.container}>
       <View style={styles.headerView}>
         <Text style={styles.loginTextHeader}>WAVE 2.0</Text>
         <Text style={styles.loginTextHeader}>{texts.LOGIN}</Text>
