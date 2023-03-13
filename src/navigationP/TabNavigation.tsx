@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {CurvedBottomBar} from 'react-native-curved-bottom-bar';
 import {NavigationContainer} from '@react-navigation/native';
-import Login from '../screens/Login';
+import Login from '../screens/Login/Login';
 import Screen2 from '../screens/Screen2';
 import Screen3 from '../screens/Screen3';
 import Screen4 from '../screens/Screen4';

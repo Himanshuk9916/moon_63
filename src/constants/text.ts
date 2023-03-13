@@ -10,5 +10,15 @@ export const texts={
     EXTRA:'Extra',
     ADD:'Add',
     NIFTY:'Nifty',
-    OTHER:'OTHER'
+    OTHER:'OTHER',
+    SIGNUP_INFO:'Signup with your mobile and start 15 days(s) free trial now',
+    SIGNUP:'Sign Up',
+    LOGIN:'Login',
+    FORGOT_PASS:'Forgot Password',
+    REGISTER:'Register',
+    NOT_REGISTERED:"Haven't registered yet?Click here to",
+    EXCHANGES:'Availble Exchanges',
+    TIMINGS:'Exchange Timings',
+    ABOUT_US:'About Us',
+    MEMBERSHIP:'Membership Details'
 }
