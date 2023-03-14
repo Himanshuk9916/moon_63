@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     registerText: {
       color: 'blue',
       fontWeight: 'bold',
+      marginLeft:5
     },
     newUserSignupContainer:{
       backgroundColor: 'black',

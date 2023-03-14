@@ -7,15 +7,14 @@ function Demo1(){
     const navigation=useNavigation<any>()
     const {globaltheme,toggleTheme}=useContext(ThemeContext)
     console.log('DemoScreen1',globaltheme)
-    console.log('Function',toggleTheme)
 
     const anyFunction=()=>{
         toggleTheme()
     }
 
     return(
-        <View style={{backgroundColor:globaltheme.backgroundcolor,flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text style={{color:globaltheme.textcolor}}>Demo Screen 1</Text>
+        <View style={{backgroundColor:globaltheme.backgroundColor,flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text style={{color:globaltheme.textColor}}>Demo Screen 1</Text>
             <Button title="Press" onPress={()=>navigation.navigate('Demo2')}/>
             <Button title="Toggle" onPress={()=>anyFunction()}/>
         </View>

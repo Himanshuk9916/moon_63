@@ -11,6 +11,7 @@ const CustomInput=(props:any)=>{
             placeholder={props.placeholder}
             style={props.style? props.style: styles.input}
             secureTextEntry={props.secureTextEntry}
+            onChangeText={props.onChangeText}
             />
             {props.rightIcon && 
             <TouchableOpacity onPress={props.onPress} style={styles.rightIconContainer}>
