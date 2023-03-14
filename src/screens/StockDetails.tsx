@@ -1,14 +1,20 @@
 import React, {useEffect, useState,useCallback} from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {View, Text, FlatList, TouchableOpacity, LogBox} from 'react-native';
+import DotModal from '../components/DotModal';
 import Header from '../components/Header';
+import NorModal from '../components/NorModal';
+import TrendModal from '../components/TrendModal';
 import {colors} from '../constants/colors';
 import {texts} from '../constants/text';
-
-LogBox.ignoreAllLogs();
+import FilterModal from '../components/FilterModal';
 
 function StockDetails() {
   const [stockData, setStockData] = useState<any>();
+  const [norModalVisible,setNorModalVisible]=useState(false);
+  const [trendModalVisible,setTrendModalVisible]=useState(false)
+  const [dotModalVisible,setDotModalVisible]=useState(false)
+  const [filterModalVisible,setFilterModalVisible]=useState(false)
 
   useEffect(() => {
     pushStockData();
@@ -18,18 +24,18 @@ function StockDetails() {
     return (
       <View style={styles.headerComponentView}>
         <View>
-          <Text>{texts.NOR}</Text>
+          <TouchableOpacity onPress={()=>setNorModalVisible(true)}><Text>{texts.NOR}</Text></TouchableOpacity>
         </View>
         <View style={styles.headerFlexEndView}>
-          <TouchableOpacity style={styles.notificationView}>
+          <TouchableOpacity style={styles.notificationView} onPress={()=>setTrendModalVisible(true)}>
           </TouchableOpacity>
           <TouchableOpacity style={{borderWidth: 1, borderRadius: 20}}>
             <Text style={styles.addText}>{texts.ADD}</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>setFilterModalVisible(true)}>
             <Image source={require('../Assets/filter.png')} style={styles.icon}/>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>setDotModalVisible(true)}>
             <Image source={require('../Assets/options.png')} style={styles.icon}/>
           </TouchableOpacity>
         </View>
@@ -61,6 +67,21 @@ const _viewabilityConfig = {
     itemVisiblePercentThreshold: 50
 }
 
+const onNorClose=()=>{
+  setNorModalVisible((prevState)=>!prevState)
+}
+
+const onTrendClose=()=>{
+  setTrendModalVisible((prevState)=>!prevState)
+}
+
+const onDotModalClose=()=>{
+  setDotModalVisible((prevState)=>!prevState)
+}
+
+const onFilterModalClose=()=>{
+  setFilterModalVisible((prevState)=>!prevState)
+}
   return (
     <View style={{flex: 1}}>
       <Header />
@@ -92,6 +113,10 @@ const _viewabilityConfig = {
           )}
         />
       </View>
+      <NorModal visible={norModalVisible} onClose={onNorClose}/>
+      <TrendModal visible={trendModalVisible} onClose={onTrendClose}/>
+      <DotModal visible={dotModalVisible} onClose={onDotModalClose}/>
+      <FilterModal visible={filterModalVisible} onClose={onFilterModalClose} />
     </View>
   );
 }

@@ -8,30 +8,30 @@ import Login from './src/screens/Login/Login';
 import { lightTheme } from './src2/themes/light';
 import { darkTheme } from './src2/themes/dark';
 
-function App(){
-  const [globaltheme,setGlobalTheme]=useState(lightTheme)
-
-  const toggleTheme=()=>{
-    if(globaltheme == lightTheme){
-      setGlobalTheme(darkTheme)
-    }else if(globaltheme == darkTheme){
-      setGlobalTheme(lightTheme)
-    }
-  }
-
-  return(
-    <ThemeContext.Provider value={{globaltheme,toggleTheme}}>
-    <StackNavigation />
-    </ThemeContext.Provider>
-  )
-}
-
 // function App(){
-  
+//   const [globaltheme,setGlobalTheme]=useState(lightTheme)
+
+//   const toggleTheme=()=>{
+//     if(globaltheme == lightTheme){
+//       setGlobalTheme(darkTheme)
+//     }else if(globaltheme == darkTheme){
+//       setGlobalTheme(lightTheme)
+//     }
+//   }
+
 //   return(
-//     <TabBar />
-//     // <Login />
+//     <ThemeContext.Provider value={{globaltheme,toggleTheme}}>
+//     <StackNavigation />
+//     </ThemeContext.Provider>
 //   )
 // }
+
+function App(){
+  
+  return(
+    <TabBar />
+    // <Login />
+  )
+}
 
 export default App;
