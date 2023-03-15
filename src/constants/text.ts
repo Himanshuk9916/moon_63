@@ -20,5 +20,7 @@ export const texts={
     EXCHANGES:'Availble Exchanges',
     TIMINGS:'Exchange Timings',
     ABOUT_US:'About Us',
-    MEMBERSHIP:'Membership Details'
+    MEMBERSHIP:'Membership Details',
+    SELECT_WATCHLIST:'Select Watchlist',
+    CREATE_WATCHLIST:'Create Watchlist'
 }

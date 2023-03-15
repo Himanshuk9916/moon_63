@@ -19,7 +19,7 @@ function TrendModal(props: any) {
       text: 'SomeText',
     },
     {
-      companyName: 'SBEn',
+      companyName: 'TECHM',
       value: '1100.00(-2.00%)',
       text: 'SomeText',
     },

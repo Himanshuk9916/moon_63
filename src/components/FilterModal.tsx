@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  Button,
 } from 'react-native';
 
 const FilterModal = (props: any) => {
@@ -19,7 +20,7 @@ const FilterModal = (props: any) => {
       }}>
       <View style={styles.modalView}>
         <Text>Sort & Filter</Text>
-        <View style={{backgroundColor:"yellow",height:250,justifyContent:"space-between"}}>
+        <View style={{height:250,justifyContent:"space-between"}}>
           <Text>Alphabetically</Text>
           <View style={{flexDirection: 'row',width:200,justifyContent:"space-between"}}>
             <TouchableOpacity
@@ -65,6 +66,7 @@ const FilterModal = (props: any) => {
             </TouchableOpacity>
           </View>
         </View>
+        <Button title='Press' onPress={props.onClose}/>
       </View>
     </Modal>
   );
