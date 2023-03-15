@@ -9,57 +9,76 @@ import {
   Button,
   FlatList,
 } from 'react-native';
+import {assets} from '../Assets';
 import {colors} from '../constants/colors';
 import {texts} from '../constants/text';
 
 const DotModal = (props: any) => {
   const data = [
     {
-      icon: require('../Assets/cross.png'),
+      icon: assets.cross,
       label: 'Add Script',
-      onPress:(item:any)=>{console.log(item)}
+      onPress: (item: any) => {
+        console.log(item);
+      },
     },
     {
-      icon: require('../Assets/cross.png'),
+      icon: assets.cross,
       label: 'Remove Script',
-      onPress:(item:any)=>{console.log(item)}
+      onPress: (item: any) => {
+        console.log(item);
+      },
     },
     {
-      icon: require('../Assets/cross.png'),
+      icon: assets.cross,
       label: 'Filter',
-      onPress:(item:any)=>{console.log(item)}
+      onPress: (item: any) => {
+        console.log(item);
+      },
     },
     {
-      icon: require('../Assets/cross.png'),
+      icon: assets.cross,
       label: 'Reorder Scripts',
-      onPress:(item:any)=>{console.log(item)}
+      onPress: (item: any) => {
+        console.log(item);
+      },
     },
     {
-      icon: require('../Assets/cross.png'),
+      icon: assets.cross,
       label: 'Rename watchlist',
-      onPress:(item:any)=>{console.log(item)}
+      onPress: (item: any) => {
+        console.log(item);
+      },
     },
     {
-      icon: require('../Assets/cross.png'),
+      icon: assets.cross,
       label: 'Delete watchlsit',
-      onPress:(item:any)=>{console.log(item)}
+      onPress: (item: any) => {
+        console.log(item);
+      },
     },
     {
-      icon: require('../Assets/cross.png'),
+      icon: assets.cross,
       label: 'Create new watchlist',
-      onPress:(item:any)=>{console.log(item)}
+      onPress: (item: any) => {
+        console.log(item);
+      },
     },
     {
-      icon: require('../Assets/cross.png'),
+      icon: assets.cross,
       label: 'Mark this default',
-      onPress:(item:any)=>{console.log(item)}
+      onPress: (item: any) => {
+        console.log(item);
+      },
     },
   ];
 
   const renderView = (item: any) => {
     console.log(item.label);
     return (
-      <TouchableOpacity style={{flexDirection: 'row', height: 42, alignItems: 'center'}} onPress={()=>item.onPress(item)}>
+      <TouchableOpacity
+        style={{flexDirection: 'row', height: 42, alignItems: 'center'}}
+        onPress={() => item.onPress(item)}>
         <Image source={item.icon} style={{height: 15, width: 15}} />
         <Text style={{color: colors.black, paddingLeft: 20, fontSize: 15}}>
           {item.label}
@@ -78,15 +97,7 @@ const DotModal = (props: any) => {
       }}>
       <View style={styles.modalView}>
         <TouchableOpacity onPress={props.onClose}>
-        <Image
-          source={require('../Assets/cross.png')}
-          style={{
-            height: 20,
-            width: 20,
-            marginVertical: 10,
-            alignSelf: 'flex-end',
-          }}
-        />
+          <Image source={assets.cross} style={styles.image} />
         </TouchableOpacity>
         <FlatList data={data} renderItem={({item}) => renderView(item)} />
       </View>
@@ -110,6 +121,12 @@ const styles = StyleSheet.create({
     height: 300,
     width: 120,
     alignItems: 'flex-start',
+  },
+  image: {
+    height: 20,
+    width: 20,
+    marginVertical: 10,
+    alignSelf: 'flex-end',
   },
 });
 

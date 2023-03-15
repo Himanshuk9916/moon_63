@@ -8,6 +8,7 @@ import {
   Image,
   Button,
 } from 'react-native';
+import alignment from '../utils/alignment';
 
 const FilterModal = (props: any) => {
   return (
@@ -20,53 +21,45 @@ const FilterModal = (props: any) => {
       }}>
       <View style={styles.modalView}>
         <Text>Sort & Filter</Text>
-        <View style={{height:250,justifyContent:"space-between"}}>
+        <View style={{height: 250, justifyContent: 'space-between'}}>
           <Text>Alphabetically</Text>
-          <View style={{flexDirection: 'row',width:200,justifyContent:"space-between"}}>
-            <TouchableOpacity
-              style={styles.commonHtZ}>
+          <View style={styles.aplhaType}>
+            <TouchableOpacity style={styles.commonHtZ}>
               <Text>A-Z</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.commonHtZ}>
+            <TouchableOpacity style={styles.commonHtZ}>
               <Text>A-Z</Text>
             </TouchableOpacity>
           </View>
           <Text>Price</Text>
-          <View style={{flexDirection: 'row',width:250,justifyContent:"space-between"}}>
-            <TouchableOpacity
-              style={styles.commonHtL}>
+          <View style={styles.pricePercentage}>
+            <TouchableOpacity style={styles.commonHtL}>
               <Text>High to Low</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.commonHtL}>
+            <TouchableOpacity style={styles.commonHtL}>
               <Text>Low to High</Text>
             </TouchableOpacity>
           </View>
           <Text>Percentage</Text>
-          <View style={{flexDirection: 'row',width:250,justifyContent:"space-between"}}>
-            <TouchableOpacity
-              style={styles.commonHtL}>
+          <View style={styles.pricePercentage}>
+            <TouchableOpacity style={styles.commonHtL}>
               <Text>High to Low</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.commonHtL}>
+            <TouchableOpacity style={styles.commonHtL}>
               <Text>Low to High</Text>
             </TouchableOpacity>
           </View>
           <Text>Type</Text>
-          <View style={{flexDirection: 'row',width:200,justifyContent:"space-between"}}>
-            <TouchableOpacity
-              style={styles.commonHtZ}>
+          <View style={styles.aplhaType}>
+            <TouchableOpacity style={styles.commonHtZ}>
               <Text>A-Z</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.commonHtZ}>
+            <TouchableOpacity style={styles.commonHtZ}>
               <Text>A-Z</Text>
             </TouchableOpacity>
           </View>
         </View>
-        <Button title='Press' onPress={props.onClose}/>
+        <Button title="Press" onPress={props.onClose} />
       </View>
     </Modal>
   );
@@ -89,20 +82,28 @@ const styles = StyleSheet.create({
     width: 120,
     alignItems: 'flex-start',
   },
-  commonHtL:{
+  commonHtL: {
     borderWidth: 1,
     height: 35,
     width: 100,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  commonHtZ:{
+  commonHtZ: {
     borderWidth: 1,
     height: 35,
     width: 70,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  aplhaType: {
+    width: 200,
+    ...alignment.row_SpaceB,
+  },
+  pricePercentage: {
+    width: 250,
+    ...alignment.row_SpaceB,
+  },
 });
 
 export default FilterModal;

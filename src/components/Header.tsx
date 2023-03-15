@@ -4,6 +4,7 @@ import {texts} from '../constants/text';
 import {colors} from '../constants/colors';
 import IndexModal from './Modal';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
+import { assets } from '../Assets';
 
 function Header(props: any) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -12,11 +13,6 @@ function Header(props: any) {
   const [otherValue, setOtherValue] = useState(false);
 
   useEffect(() => {
-    // if(otherValue == true){
-    //   setNiftyValue(false)
-    // }else if(otherValue == false){
-    //   setNiftyValue(true)
-    // }
     if (niftyValue && sensexValue && otherValue) {
       showMessage({
         message: 'Information',
@@ -52,14 +48,14 @@ function Header(props: any) {
         <View style={styles.settingsView}>
           <TouchableOpacity>
             <Image
-              source={require('../Assets/rupees.png')}
+              source={assets.rupees}
               style={styles.image}
               resizeMode="contain"
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setModalVisible(prev => !prev)}>
             <Image
-              source={require('../Assets/settings.png')}
+              source={assets.settings}
               style={styles.image}
               resizeMode="contain"
             />

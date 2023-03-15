@@ -4,12 +4,14 @@ import {
   Text,
   Modal,
   StyleSheet,
-  Button,
   FlatList,
   TouchableOpacity,
   Image,
 } from 'react-native';
+import { assets } from '../Assets';
 import {colors} from '../constants/colors';
+import { texts } from '../constants/text';
+import alignment from '../utils/alignment';
 
 function TrendModal(props: any) {
   const data = [
@@ -53,10 +55,10 @@ function TrendModal(props: any) {
         props.onClose();
       }}>
       <View style={styles.modalView}>
-        <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:"center"}}>
-        <Text style={{fontSize:30,color:colors.black}}>Dont Miss</Text>
+        <View style={{...alignment.row_alingC_SpaceB}}>
+        <Text style={{fontSize:30,color:colors.black}}>{texts.DONT_MISS}</Text>
         <TouchableOpacity onPress={()=>props.onClose()}>
-      <Image source={require('../Assets/cross.png')} style={{height:25,width:25}}/>
+      <Image source={assets.cross} style={styles.image}/>
       </TouchableOpacity>
         </View>
         <FlatList
@@ -67,15 +69,10 @@ function TrendModal(props: any) {
               style={styles.itemBox}>
               <View style={styles.notificationView}></View>
               <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  color: 'black',
-                  marginBottom: 10,
-                }}>
-                TRADE
+                style={styles.tradeText}>
+                {texts.TRADE}
               </Text>
-              <Text style={{fontSize: 17, fontWeight: 'bold', color: 'black'}}>
+              <Text style={styles.companyNameText}>
                 {item.companyName}
               </Text>
               <Text>{item.value}</Text>
@@ -122,6 +119,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     paddingHorizontal:10
     ,marginTop:20
+  },
+  tradeText:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.black,
+    marginBottom: 10,
+  },
+  image:{
+    height:25,width:25
+  },
+  companyNameText:{
+    fontSize: 17, fontWeight: 'bold', color: colors.black
   }
 });
 

@@ -22,5 +22,7 @@ export const texts={
     ABOUT_US:'About Us',
     MEMBERSHIP:'Membership Details',
     SELECT_WATCHLIST:'Select Watchlist',
-    CREATE_WATCHLIST:'Create Watchlist'
+    CREATE_WATCHLIST:'Create Watchlist',
+    TRADE:'Trade',
+    DONT_MISS:'Dont Miss'
 }

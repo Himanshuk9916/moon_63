@@ -4,10 +4,10 @@ import {
   Text,
   Modal,
   StyleSheet,
-  Button,
   TouchableOpacity,
   Image,
 } from 'react-native';
+import {assets} from '../Assets';
 import {colors} from '../constants/colors';
 import {texts} from '../constants/text';
 import alignment from '../utils/alignment';
@@ -32,65 +32,47 @@ const NorModal = (props: any) => {
       <View style={styles.modalView}>
         <View
           style={{
-            ...alignment.row,
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            ...alignment.row_alingC_SpaceB,
           }}>
           <Text style={styles.watchListText}>{texts.SELECT_WATCHLIST}</Text>
           <TouchableOpacity onPress={props.onClose}>
-          <Image source={require('../Assets/cross.png')} style={styles.img} />
+            <Image source={assets.cross} style={styles.img} />
           </TouchableOpacity>
         </View>
         {data.map((data, key) => (
-          <View key={key} style={{padding:15}}>
+          <View key={key} style={{padding: 15}}>
             {checked == key ? (
               <View style={styles.btn}>
-                <TouchableOpacity style={{flexDirection: 'row'}}>
-                  <Image
-                    style={styles.img}
-                    source={require('../Assets/radio_checked.png')}
-                  />
-                  <Text style={{color:colors.black}}>{data}</Text>
+                <TouchableOpacity style={{...alignment.row}}>
+                  <Image style={styles.img} source={assets.radio_checked} />
+                  <Text style={{color: colors.black}}>{data}</Text>
                 </TouchableOpacity>
-                <View style={{flexDirection: 'row',width:50,justifyContent:'space-between'}}>
-                  <Image
-                    source={require('../Assets/delete.png')}
-                    style={styles.img}
-                  />
-                  <Image
-                    source={require('../Assets/heart.png')}
-                    style={styles.img}
-                  />
+                <View style={{width: 50, ...alignment.row_SpaceB}}>
+                  <Image source={assets.delete} style={styles.img} />
+                  <Image source={assets.heart} style={styles.img} />
                 </View>
               </View>
             ) : (
               <View style={styles.btn}>
                 <TouchableOpacity
                   onPress={() => setChecked(key)}
-                  style={{flexDirection:'row'}}>
-                  <Image
-                    style={styles.img}
-                    source={require('../Assets/radio_unchecked.png')}
-                  />
-                  <Text style={{color:colors.black}}>{data}</Text>
+                  style={{...alignment.row}}>
+                  <Image style={styles.img} source={assets.radio_unchecked} />
+                  <Text style={{color: colors.black}}>{data}</Text>
                 </TouchableOpacity>
-                <View style={{flexDirection: 'row',width:50,justifyContent:'space-between'}}>
-                  <Image
-                    source={require('../Assets/delete.png')}
-                    style={styles.img}
-                  />
-                  <Image
-                    source={require('../Assets/heart.png')}
-                    style={styles.img}
-                  />
+                <View style={{width: 50, ...alignment.row_SpaceB}}>
+                  <Image source={assets.delete} style={styles.img} />
+                  <Image source={assets.heart} style={styles.img} />
                 </View>
               </View>
             )}
           </View>
         ))}
-        <TouchableOpacity style={{...alignment.row,paddingLeft:15,alignItems:'center'}}>
-          <Image source={require('../Assets/cross.png')} style={styles.img}/>
-          <Text style={{paddingLeft:30,fontSize:20,color:colors.black}}>{texts.CREATE_WATCHLIST}</Text>
+        <TouchableOpacity style={{...alignment.row_alignC, paddingLeft: 15}}>
+          <Image source={assets.cross} style={styles.img} />
+          <Text style={styles.createWatchListText}>
+            {texts.CREATE_WATCHLIST}
+          </Text>
         </TouchableOpacity>
       </View>
     </Modal>
@@ -129,6 +111,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: colors.black,
   },
+  createWatchListText:{
+    paddingLeft: 30, fontSize: 20, color: colors.black
+  }
 });
 
 export default NorModal;
