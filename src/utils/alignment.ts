@@ -20,5 +20,9 @@ export default StyleSheet.create({
   row_alignC:{
     flexDirection:'row',
     alignItems:'center'
+  },
+  alignC_justifyC:{
+    alignItems:'center',
+    justifyContent:'center'
   }
 });
