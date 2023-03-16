@@ -14,7 +14,7 @@ import alignment from '../utils/alignment';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
 import IndexModal from '../components/Modal';
 
-function Screen4() {
+function Header() {
   const [modalVisible, setModalVisible] = useState(false);
   const [niftyValue, setNiftyValue] = useState(true);
   const [sensexValue, setSenSexValue] = useState(true);
@@ -66,7 +66,7 @@ function Screen4() {
     }
   };
 
-  const renderItem = ({item}: any) => {
+  const renderIndexView = ({item}: any) => {
     return (
       <View style={{marginHorizontal: 20, alignItems: 'center'}}>
         <Text style={styles.titleText}>{item.name}</Text>
@@ -92,7 +92,7 @@ function Screen4() {
         <FlatList
           horizontal={true}
           data={data}
-          renderItem={renderItem}
+          renderItem={renderIndexView}
           showsHorizontalScrollIndicator={false}
         />
         <View style={{...alignment.space_between}}>
@@ -141,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Screen4;
+export default Header;

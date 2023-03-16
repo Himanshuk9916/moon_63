@@ -11,6 +11,7 @@ import {assets} from '../Assets';
 import {colors} from '../constants/colors';
 import {texts} from '../constants/text';
 import alignment from '../utils/alignment';
+import CommonModal from './CommonModal/CommonModal';
 
 const NorModal = (props: any) => {
   const [checked, setChecked] = useState(0);
@@ -22,60 +23,50 @@ const NorModal = (props: any) => {
   }, [checked]);
 
   return (
-    <Modal
-      animationType="slide"
-      visible={props.visible}
-      transparent={true}
-      onRequestClose={() => {
-        props.onClose();
-      }}>
-      <View style={styles.modalView}>
-        <View
-          style={{
-            ...alignment.row_alingC_SpaceB,
-          }}>
-          <Text style={styles.watchListText}>{texts.SELECT_WATCHLIST}</Text>
-          <TouchableOpacity onPress={props.onClose}>
-            <Image source={assets.cross} style={styles.img} />
-          </TouchableOpacity>
-        </View>
-        {data.map((data, key) => (
-          <View key={key} style={{padding: 15}}>
-            {checked == key ? (
-              <View style={styles.btn}>
-                <TouchableOpacity style={{...alignment.row}}>
-                  <Image style={styles.img} source={assets.radio_checked} />
-                  <Text style={{color: colors.black}}>{data}</Text>
-                </TouchableOpacity>
-                <View style={{width: 50, ...alignment.row_SpaceB}}>
-                  <Image source={assets.delete} style={styles.img} />
-                  <Image source={assets.heart} style={styles.img} />
-                </View>
-              </View>
-            ) : (
-              <View style={styles.btn}>
-                <TouchableOpacity
-                  onPress={() => setChecked(key)}
-                  style={{...alignment.row}}>
-                  <Image style={styles.img} source={assets.radio_unchecked} />
-                  <Text style={{color: colors.black}}>{data}</Text>
-                </TouchableOpacity>
-                <View style={{width: 50, ...alignment.row_SpaceB}}>
-                  <Image source={assets.delete} style={styles.img} />
-                  <Image source={assets.heart} style={styles.img} />
-                </View>
-              </View>
-            )}
-          </View>
-        ))}
-        <TouchableOpacity style={{...alignment.row_alignC, paddingLeft: 15}}>
+    <CommonModal visible={props.visible} onRequestClose={() => props.onClose()}>
+      <View
+        style={{
+          ...alignment.row_alingC_SpaceB,
+        }}>
+        <Text style={styles.watchListText}>{texts.SELECT_WATCHLIST}</Text>
+        <TouchableOpacity onPress={props.onClose}>
           <Image source={assets.cross} style={styles.img} />
-          <Text style={styles.createWatchListText}>
-            {texts.CREATE_WATCHLIST}
-          </Text>
         </TouchableOpacity>
       </View>
-    </Modal>
+      {data.map((data, key) => (
+        <View key={key} style={{padding: 15}}>
+          {checked == key ? (
+            <View style={styles.btn}>
+              <TouchableOpacity style={{...alignment.row}}>
+                <Image style={styles.img} source={assets.radio_checked} />
+                <Text style={{color: colors.black}}>{data}</Text>
+              </TouchableOpacity>
+              <View style={{width: 50, ...alignment.row_SpaceB}}>
+                <Image source={assets.delete} style={styles.img} />
+                <Image source={assets.heart} style={styles.img} />
+              </View>
+            </View>
+          ) : (
+            <View style={styles.btn}>
+              <TouchableOpacity
+                onPress={() => setChecked(key)}
+                style={{...alignment.row}}>
+                <Image style={styles.img} source={assets.radio_unchecked} />
+                <Text style={{color: colors.black}}>{data}</Text>
+              </TouchableOpacity>
+              <View style={{width: 50, ...alignment.row_SpaceB}}>
+                <Image source={assets.delete} style={styles.img} />
+                <Image source={assets.heart} style={styles.img} />
+              </View>
+            </View>
+          )}
+        </View>
+      ))}
+      <TouchableOpacity style={{...alignment.row_alignC, paddingLeft: 15}}>
+        <Image source={assets.cross} style={styles.img} />
+        <Text style={styles.createWatchListText}>{texts.CREATE_WATCHLIST}</Text>
+      </TouchableOpacity>
+    </CommonModal>
   );
 };
 
@@ -111,9 +102,11 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: colors.black,
   },
-  createWatchListText:{
-    paddingLeft: 30, fontSize: 20, color: colors.black
-  }
+  createWatchListText: {
+    paddingLeft: 30,
+    fontSize: 20,
+    color: colors.black,
+  },
 });
 
 export default NorModal;

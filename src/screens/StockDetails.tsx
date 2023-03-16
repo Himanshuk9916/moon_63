@@ -1,15 +1,25 @@
 import React, {useEffect, useState, useCallback, useRef} from 'react';
 import {Image, StyleSheet} from 'react-native';
-import {View, Text, FlatList, TouchableOpacity, LogBox} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  LogBox,
+  Dimensions,
+} from 'react-native';
 import DotModal from '../components/DotModal';
 import Header from '../components/Header';
 import NorModal from '../components/NorModal';
 import TrendModal from '../components/TrendModal';
 import {colors} from '../constants/colors';
 import {texts} from '../constants/text';
-import FilterModal from '../components/FilterModal';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import BottomSheet,{BottomSheetRefProps} from '../components/BottomSheet/BottomSheet';
+import BottomSheet, {
+  BottomSheetRefProps,
+} from '../components/BottomSheet/BottomSheet';
+
+const screenHeight = Dimensions.get('window').height;
 
 function StockDetails() {
   const [stockData, setStockData] = useState<any>();
@@ -24,17 +34,15 @@ function StockDetails() {
   }, []);
 
   const onPress = useCallback(() => {
-    ref?.current?.scrollTo(-200);
+    ref?.current?.scrollTo(-300);
   }, []);
 
   const componentHeaderBlock = () => {
     return (
       <View style={styles.headerComponentView}>
-        <View>
-          <TouchableOpacity onPress={() => setNorModalVisible(true)}>
-            <Text>{texts.NOR}</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={() => setNorModalVisible(true)}>
+          <Text>{texts.NOR}</Text>
+        </TouchableOpacity>
         <View style={styles.headerFlexEndView}>
           <TouchableOpacity
             style={styles.notificationView}
@@ -53,6 +61,29 @@ function StockDetails() {
               source={require('../Assets/options.png')}
               style={styles.icon}
             />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
+  const renderListView = ({item}: any) => {
+    return (
+      <View style={styles.stock}>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{fontWeight: 'bold'}}>{item.companyName}</Text>
+          <Text style={styles.index}>{item.index}</Text>
+        </View>
+        <View style={styles.stockContainer}>
+          <View>
+            <Text style={styles.stockPriceText}>{item.value}</Text>
+            <Text
+              style={{
+                color: colors.bright_green,
+              }}>{`${item.dayValue}(+${item.percentage}%)`}</Text>
+          </View>
+          <TouchableOpacity style={styles.endT}>
+            <Text style={styles.endTtext}>T</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -105,38 +136,18 @@ function StockDetails() {
     <GestureHandlerRootView style={{flex: 1}}>
       <Header />
       {componentHeaderBlock()}
-      <View style={{height: 500}}>
+      <View style={{height: screenHeight - 200}}>
         <FlatList
-          onViewableItemsChanged={onViewableItemsChanged}
-          viewabilityConfig={_viewabilityConfig}
+          // onViewableItemsChanged={onViewableItemsChanged}
+          // viewabilityConfig={_viewabilityConfig}
           data={stockData}
-          renderItem={({item}) => (
-            <View style={styles.stock}>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{fontWeight: 'bold'}}>{item.companyName}</Text>
-                <Text style={styles.index}>{item.index}</Text>
-              </View>
-              <View style={styles.stockContainer}>
-                <View>
-                  <Text style={styles.stockPriceText}>{item.value}</Text>
-                  <Text
-                    style={{
-                      color: colors.bright_green,
-                    }}>{`${item.dayValue}(+${item.percentage}%)`}</Text>
-                </View>
-                <View style={styles.endT}>
-                  <Text style={styles.endTtext}>T</Text>
-                </View>
-              </View>
-            </View>
-          )}
+          renderItem={renderListView}
         />
       </View>
       <NorModal visible={norModalVisible} onClose={onNorClose} />
       <TrendModal visible={trendModalVisible} onClose={onTrendClose} />
       <DotModal visible={dotModalVisible} onClose={onDotModalClose} />
-      <FilterModal visible={filterModalVisible} onClose={onFilterModalClose} />
-      <BottomSheet ref={ref}/>
+      <BottomSheet ref={ref} />
     </GestureHandlerRootView>
   );
 }

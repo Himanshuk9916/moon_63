@@ -30,8 +30,8 @@ import Extra from './src2/screens/extra';
 function App(){
   
   return(
-    <TabBar />
-    // <Login />
+    // <TabBar />
+    <Login />
   )
 }
 

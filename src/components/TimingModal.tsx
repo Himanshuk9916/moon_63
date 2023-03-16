@@ -1,4 +1,5 @@
 import React from 'react';
+import { FlatList } from 'react-native';
 import {
   View,
   Text,
@@ -11,61 +12,60 @@ import {assets} from '../Assets';
 import {colors} from '../constants/colors';
 import {texts} from '../constants/text';
 import alignment from '../utils/alignment';
+import CommonModal from './CommonModal/CommonModal';
 
 const TimingModal = (props: any) => {
-  const index = ['', 'NSE', 'BSE', 'NDCEX', 'MCX', 'MCX-SX'];
 
-  const marketTiming = [
-    'MARKET TIMINGS',
-    '9:15AM-15:30PM',
-    '9:15AM-15:30PM',
-    '9:15AM-15:30PM',
-    '9:15AM-15:30PM',
-    '9:15AM-15:30PM',
-  ];
+  const data=[
+    {
+      index:'NSE',
+      marketTiming:'9:15AM-15:30PM',
+      amoTiming:'00:00AM-00:00AM',
+    },
+    {
+      index:'BSE',
+      marketTiming:'9:15AM-15:30PM',
+      amoTiming:'00:00AM-00:00AM',
+    },
+    {
+      index:'NDCEX',
+      marketTiming:'9:15AM-15:30PM',
+      amoTiming:'00:00AM-00:00AM',
+    },
+    {
+      index:'MCX',
+      marketTiming:'9:15AM-15:30PM',
+      amoTiming:'00:00AM-00:00AM',
+    },
+    {
+      index:'MCX-SX',
+      marketTiming:'9:15AM-15:30PM',
+      amoTiming:'00:00AM-00:00AM',
+    },
+  ]
 
-  const amoTiming = [
-    'AMO TIMINGS',
-    '00:00AM-00:00AM',
-    '00:00AM-00:00AM',
-    '00:00AM-00:00AM',
-    '00:00AM-00:00AM',
-    '00:00AM-00:00AM',
-  ];
-  return (
-    <Modal
-      animationType="slide"
-      visible={props.visible}
-      transparent={true}
-      onRequestClose={() => {
-        props.onClose();
-      }}>
-      <View style={styles.modalView}>
-        <TouchableOpacity
-          onPress={() => props.onClose()}
-          style={{alignItems: 'flex-end'}}>
-          <Image source={assets.cross} style={styles.image} />
-        </TouchableOpacity>
-        <Text style={styles.timingText}>{texts.TIMINGS}</Text>
-        <View style={{...alignment.row_SpaceB}}>
-          <View style={{height: 300, width: 60}}>
-            {index.map(item => (
-              <Text style={styles.indexText}>{item}</Text>
-            ))}
-          </View>
-          <View style={styles.commonTimingView}>
-            {marketTiming.map(item => (
-              <Text style={styles.market_amo_Text}>{item}</Text>
-            ))}
-          </View>
-          <View style={styles.commonTimingView}>
-            {amoTiming.map(item => (
-              <Text style={styles.market_amo_Text}>{item}</Text>
-            ))}
-          </View>
-        </View>
+  const renderTiming=({item}:any)=>{
+    return(
+      <View style={{...alignment.row,justifyContent:'space-evenly'}}>
+        <Text style={styles.indexText}>{item.index}</Text>
+        <Text style={styles.market_amo_Text}>{item.marketTiming}</Text>
+        <Text style={styles.market_amo_Text}>{item.amoTiming}</Text>
       </View>
-    </Modal>
+    )
+  }
+  return (
+    <CommonModal visible={props.visible} onRequestClose={() => props.onClose()}>
+      <TouchableOpacity
+        onPress={() => props.onClose()}
+        style={{alignItems: 'flex-end'}}>
+        <Image source={assets.cross} style={styles.image} />
+      </TouchableOpacity>
+      <Text style={styles.timingText}>{texts.TIMINGS}</Text>
+      <FlatList 
+      data={data}
+      renderItem={renderTiming}
+      />
+    </CommonModal>
   );
 };
 
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   market_amo_Text: {
     color: colors.black,
     marginVertical: 10,
+    paddingLeft:20
   },
 });
 
