@@ -31,7 +31,11 @@ function StockDetails() {
 
   useEffect(() => {
     pushStockData();
-  }, []);
+
+    return ()=>{
+      console.log('Hello')
+    }
+  },[]);
 
   const onPress = useCallback(() => {
     ref?.current?.scrollTo(-300);
@@ -69,7 +73,7 @@ function StockDetails() {
 
   const renderListView = ({item}: any) => {
     return (
-      <View style={styles.stock}>
+      <TouchableOpacity style={styles.stock}>
         <View style={{flexDirection: 'row'}}>
           <Text style={{fontWeight: 'bold'}}>{item.companyName}</Text>
           <Text style={styles.index}>{item.index}</Text>
@@ -86,7 +90,7 @@ function StockDetails() {
             <Text style={styles.endTtext}>T</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 

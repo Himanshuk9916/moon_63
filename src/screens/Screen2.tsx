@@ -13,7 +13,7 @@ function Screen2() {
     console.log(toggle);
 
     return () => clearInterval(timer);
-  }, [toggle]);
+  }, []);
 
   const data = [
     {

@@ -3,7 +3,6 @@ import { FlatList } from 'react-native';
 import {
   View,
   Text,
-  Modal,
   TouchableOpacity,
   StyleSheet,
   Image,
@@ -54,7 +53,7 @@ const TimingModal = (props: any) => {
     )
   }
   return (
-    <CommonModal visible={props.visible} onRequestClose={() => props.onClose()}>
+    <CommonModal visible={props.visible} onClose={props.onClose}>
       <TouchableOpacity
         onPress={() => props.onClose()}
         style={{alignItems: 'flex-end'}}>

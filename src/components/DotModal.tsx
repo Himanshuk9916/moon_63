@@ -12,6 +12,7 @@ import {
 import {assets} from '../Assets';
 import {colors} from '../constants/colors';
 import {texts} from '../constants/text';
+import CommonModal from './CommonModal/CommonModal';
 
 const DotModal = (props: any) => {
   const data = [
@@ -88,20 +89,12 @@ const DotModal = (props: any) => {
   };
 
   return (
-    <Modal
-      animationType="slide"
-      visible={props.visible}
-      transparent={true}
-      onRequestClose={() => {
-        props.onClose();
-      }}>
-      <View style={styles.modalView}>
-        <TouchableOpacity onPress={props.onClose}>
-          <Image source={assets.cross} style={styles.image} />
-        </TouchableOpacity>
-        <FlatList data={data} renderItem={({item}) => renderView(item)} />
-      </View>
-    </Modal>
+    <CommonModal visible={props.visible} onClose={props.onClose}>
+      <TouchableOpacity onPress={props.onClose}>
+        <Image source={assets.cross} style={styles.image} />
+      </TouchableOpacity>
+      <FlatList data={data} renderItem={({item}) => renderView(item)} />
+    </CommonModal>
   );
 };
 

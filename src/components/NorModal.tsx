@@ -19,11 +19,10 @@ const NorModal = (props: any) => {
   const data = ['NOR', 'GOLDM', 'CURRENCY', 'ONE SCRIPT', 'TT', 'Default'];
 
   useEffect(() => {
-    console.log('Checked', checked);
   }, [checked]);
 
   return (
-    <CommonModal visible={props.visible} onRequestClose={() => props.onClose()}>
+    <CommonModal visible={props.visible} onClose={props.onClose}>
       <View
         style={{
           ...alignment.row_alingC_SpaceB,

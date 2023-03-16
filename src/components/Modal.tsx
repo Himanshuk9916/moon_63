@@ -10,17 +10,14 @@ import {
 } from 'react-native';
 import CheckBox from 'react-native-check-box';
 import {texts} from '../constants/text';
+import CommonModal from './CommonModal/CommonModal';
 
 function IndexModal(props: any) {
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={props.visible}
-      onRequestClose={() => {
-        props.onClose();
-      }}>
-      <View style={styles.modalContainer}>
+    <CommonModal
+    visible={props.visible}
+    onRequestClose={()=>props.onClose()}
+    >
         <View style={styles.modalContentView}>
           <Text>{texts.NIFTY}</Text>
           <CheckBox
@@ -53,8 +50,7 @@ function IndexModal(props: any) {
           onPress={() => props.onClose()}
           disabled={props.niftyValue && props.sensexValue && props.otherValue}
         />
-      </View>
-    </Modal>
+</CommonModal>
   );
 }
 
