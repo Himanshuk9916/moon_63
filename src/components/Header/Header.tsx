@@ -7,12 +7,12 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {assets} from '../Assets';
-import {colors} from '../constants/colors';
-import {texts} from '../constants/text';
-import alignment from '../utils/alignment';
+import {assets} from '../../Assets';
+import {colors} from '../../constants/colors';
+import {texts} from '../../constants/text';
+import alignment from '../../utils/alignment';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
-import IndexModal from '../components/Modal';
+import IndexModal from '../Modal';
 
 function Header() {
   const [modalVisible, setModalVisible] = useState(false);

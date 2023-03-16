@@ -6,35 +6,35 @@ import {
   TouchableOpacity as Touch,
   Alert,
 } from 'react-native';
-import CustomInput from '../../components/CustomInput';
+import CustomInput from '../../components/CustomInput/CustomInput';
 import {texts} from '../../constants/text';
 import alignment from '../../utils/alignment';
 import styles from './LoginStyle';
 import {colors} from '../../constants/colors';
-import TimingModal from '../../components/TimingModal';
-import { regex } from '../../constants/regex';
+import TimingModal from '../../components/TimingModal/TimingModal';
+import {regex} from '../../constants/regex';
 
 function Login() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [userName,setUserName]=useState('');
-  const [password,setPassword]=useState('');
-  const [valid,setValid]=useState(true);
-  const [securePassword,setSecurePassword]=useState(true)
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [valid, setValid] = useState(true);
+  const [securePassword, setSecurePassword] = useState(true);
 
-  useEffect(()=>{
-    console.log('UserName',userName)
-    console.log('Password',password)
-  },[userName,password])
+  useEffect(() => {
+    console.log('UserName', userName);
+    console.log('Password', password);
+  }, [userName, password]);
 
-  const validateAndProceed=(userName:any,password:any)=>{
-    if(userName!=='' && regex.password.test(password)){
-        setValid(false)
-        Alert.alert('Success')
-    }else{
-        setValid(true)
-        Alert.alert('Check password')
+  const validateAndProceed = (userName: any, password: any) => {
+    if (userName !== '' && regex.password.test(password)) {
+      setValid(false);
+      Alert.alert('Success');
+    } else {
+      setValid(true);
+      Alert.alert('Check password');
     }
-  }
+  };
 
   const newUserSignUpView = () => {
     return (
@@ -52,33 +52,35 @@ function Login() {
     );
   };
 
-  const onClose=()=>{
-    setModalVisible((prevState)=>!prevState)
-  }
+  const onClose = () => {
+    setModalVisible(prevState => !prevState);
+  };
 
   return (
-    <SafeAreaView style={modalVisible?styles.containerBlur:styles.container}>
+    <SafeAreaView
+      style={modalVisible ? styles.containerBlur : styles.container}>
       <View style={styles.headerView}>
         <Text style={styles.loginTextHeader}>WAVE 2.0</Text>
         <Text style={styles.loginTextHeader}>{texts.LOGIN}</Text>
       </View>
 
       <View style={styles.inputView}>
-        <CustomInput placeholder="Username" 
-        onChangeText={setUserName}
-        />
+        <CustomInput placeholder="Username" onChangeText={setUserName} />
         <CustomInput
           rightIcon={require('../../Assets/password.png')}
           placeholder="Password"
           secureTextEntry={securePassword}
           onChangeText={setPassword}
-          onPress={()=>setSecurePassword(!securePassword)}
+          onPress={() => setSecurePassword(!securePassword)}
         />
       </View>
 
       <View style={{paddingBottom: '20%', height: '40%'}}>
         <View style={styles.signUpView}>
-          <Touch style={styles.loginButton} onPress={()=>validateAndProceed(userName,password)} disabled={valid}>
+          <Touch
+            style={styles.loginButton}
+            onPress={() => validateAndProceed(userName, password)}
+            disabled={valid}>
             <Text style={styles.loginText}>{texts.LOGIN}</Text>
           </Touch>
           <Touch style={null}>
@@ -91,7 +93,7 @@ function Login() {
             <Text style={styles.registerText}>{texts.REGISTER}</Text>
           </Touch>
         </View>
-        <View>{newUserSignUpView()}</View>
+        {newUserSignUpView()}
       </View>
 
       <View>
@@ -108,10 +110,7 @@ function Login() {
           </Touch>
         </View>
       </View>
-      <TimingModal 
-      visible={modalVisible}
-      onClose={onClose}
-      />
+      <TimingModal visible={modalVisible} onClose={onClose} />
     </SafeAreaView>
   );
 }

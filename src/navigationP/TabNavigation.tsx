@@ -15,7 +15,7 @@ import Login from '../screens/Login/Login';
 import Screen2 from '../screens/Screen2';
 import Screen3 from '../screens/Screen3';
 import Screen4 from '../screens/Screen4';
-import StockDetails from '../screens/StockDetails';
+import StockDetails from '../screens/StockDetails/StockDetails';
 
 // LogBox.ignoreAllLogs()
 

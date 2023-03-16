@@ -8,10 +8,10 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { assets } from '../Assets';
-import {colors} from '../constants/colors';
-import { texts } from '../constants/text';
-import alignment from '../utils/alignment';
+import { assets } from '../../Assets';
+import {colors} from '../../constants/colors';
+import { texts } from '../../constants/text';
+import alignment from '../../utils/alignment';
 
 function TrendModal(props: any) {
   const data = [

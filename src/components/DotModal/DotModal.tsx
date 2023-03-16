@@ -1,18 +1,14 @@
 import React from 'react';
 import {
-  View,
   Text,
-  Modal,
   TouchableOpacity,
   StyleSheet,
   Image,
-  Button,
   FlatList,
 } from 'react-native';
-import {assets} from '../Assets';
-import {colors} from '../constants/colors';
-import {texts} from '../constants/text';
-import CommonModal from './CommonModal/CommonModal';
+import {assets} from '../../Assets';
+import {colors} from '../../constants/colors';
+import CommonModal from '../CommonModal/CommonModal';
 
 const DotModal = (props: any) => {
   const data = [
@@ -99,17 +95,6 @@ const DotModal = (props: any) => {
 };
 
 const styles = StyleSheet.create({
-  modalView: {
-    position: 'absolute',
-    top: 300,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'white',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderRadius: 10,
-  },
   commonTimingView: {
     height: 300,
     width: 120,

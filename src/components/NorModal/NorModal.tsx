@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {assets} from '../Assets';
-import {colors} from '../constants/colors';
-import {texts} from '../constants/text';
-import alignment from '../utils/alignment';
-import CommonModal from './CommonModal/CommonModal';
+import {assets} from '../../Assets';
+import {colors} from '../../constants/colors';
+import {texts} from '../../constants/text';
+import alignment from '../../utils/alignment';
+import CommonModal from '../CommonModal/CommonModal';
 
 const NorModal = (props: any) => {
   const [checked, setChecked] = useState(0);
