@@ -1,19 +1,21 @@
 import {View, Text, FlatList, Button} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
-import {useEffect, useLayoutEffect, useRef, useState} from 'react';
+import {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react';
 
 function Screen2() {
-    // const ref=useRef(0)
+  const [toggle, setToggle] = useState(false);
 
-    // useEffect(()=>{
-    //     const timer=setInterval(()=>{
-    //         ref.current=ref.current+1
-    //     },1000)
-    // })
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setToggle(!toggle);
+    }, 1000);
 
-    useIsFocused()
+    console.log(toggle);
 
-const data = [
+    return () => clearInterval(timer);
+  }, [toggle]);
+
+  const data = [
     {
       name: setInterval(() => {
         return Math.floor(Math.random() * 99);
@@ -32,19 +34,18 @@ const data = [
     },
   ];
 
-
   return (
     <View style={{flex: 1}}>
       <Text>Hello</Text>
       <FlatList
-      refreshing={true}
+        extraData={toggle}
         data={data}
-        renderItem={({item,index}) => (
-            <>
-            {console.log(item,index)}
-          <View>
-            <Text>{item.data}</Text>
-          </View>
+        renderItem={({item}) => (
+          <>
+            {console.log(item)}
+            <View>
+              <Text>{item.data}</Text>
+            </View>
           </>
         )}
       />

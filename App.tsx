@@ -8,7 +8,6 @@ import Login from './src/screens/Login/Login';
 import { lightTheme } from './src2/themes/light';
 import { darkTheme } from './src2/themes/dark';
 import Extra from './src2/screens/extra';
-import ExtraTwo from './src2/screens/extra2';
 
 // function App(){
 //   const [globaltheme,setGlobalTheme]=useState(lightTheme)
@@ -33,7 +32,6 @@ function App(){
   return(
     <TabBar />
     // <Login />
-    // <ExtraTwo />
   )
 }
 

@@ -24,5 +24,8 @@ export default StyleSheet.create({
   alignC_justifyC:{
     alignItems:'center',
     justifyContent:'center'
+  },
+  space_between:{
+    justifyContent:'space-between'
   }
 });

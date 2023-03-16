@@ -1,12 +1,20 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {texts} from '../constants/text';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import {assets} from '../Assets';
 import {colors} from '../constants/colors';
-import IndexModal from './Modal';
+import {texts} from '../constants/text';
+import alignment from '../utils/alignment';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
-import { assets } from '../Assets';
+import IndexModal from '../components/Modal';
 
-function Header(props: any) {
+function Screen4() {
   const [modalVisible, setModalVisible] = useState(false);
   const [niftyValue, setNiftyValue] = useState(true);
   const [sensexValue, setSenSexValue] = useState(true);
@@ -20,50 +28,22 @@ function Header(props: any) {
         type: 'danger',
       });
     }
-
-    console.log('Value', niftyValue, sensexValue, otherValue);
   }, [niftyValue, sensexValue, otherValue]);
 
-  const niftyView = () => {
-    return (
-      <View style={styles.niftyContainerView}>
-        <View>{/* <Text>View1</Text> */}</View>
-        <View style={{alignItems: 'center'}}>
-          <Text style={styles.nifty_value_text}>{niftyValue.toString()}</Text>
-          <Text style={styles.nifty_value_text}>{texts[17755]}</Text>
-          <Text style={styles.niftyValue}>{texts[160]}</Text>
-        </View>
-      </View>
-    );
-  };
-
-  const sensexView = () => {
-    return (
-      <View style={styles.niftyContainerView}>
-        <View style={{alignItems: 'center'}}>
-          <Text style={styles.nifty_value_text}>{texts.SENSEX}</Text>
-          <Text style={styles.nifty_value_text}>{texts[60397]}</Text>
-          <Text style={styles.niftyValue}>{texts[588]}</Text>
-        </View>
-        <View style={styles.settingsView}>
-          <TouchableOpacity>
-            <Image
-              source={assets.rupees}
-              style={styles.image}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setModalVisible(prev => !prev)}>
-            <Image
-              source={assets.settings}
-              style={styles.image}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  };
+  const data = [
+    {
+      name: texts.NIFTY_50,
+      value: '17755.00',
+      change: '160.65',
+      percentage: '+0.91%',
+    },
+    {
+      name: texts.SENSEX,
+      value: '60397.62',
+      change: '588.65',
+      percentage: '0.98%',
+    },
+  ];
 
   const onClose = () => {
     setModalVisible(prev => !prev);
@@ -86,6 +66,18 @@ function Header(props: any) {
     }
   };
 
+  const renderItem = ({item}: any) => {
+    return (
+      <View style={{marginHorizontal: 20, alignItems: 'center'}}>
+        <Text style={styles.titleText}>{item.name}</Text>
+        <Text style={styles.titleText}>{item.value}</Text>
+        <Text
+          style={
+            styles.changePercentage
+          }>{`${item.change}(${item.percentage})`}</Text>
+      </View>
+    );
+  };
   return (
     <>
       <IndexModal
@@ -97,54 +89,56 @@ function Header(props: any) {
         otherValue={otherValue}
       />
       <View style={styles.container}>
-        <View style={styles.headerView}>
-          {niftyView()}
-          {sensexView()}
-        </View>
-        <FlashMessage
-          position={'top'}
-          animated={true}
-          animationDuration={1000}
-          floating={true}
+        <FlatList
+          horizontal={true}
+          data={data}
+          renderItem={renderItem}
+          showsHorizontalScrollIndicator={false}
         />
+        <View style={{...alignment.space_between}}>
+          <TouchableOpacity>
+            <Image
+              source={assets.rupees}
+              style={styles.image}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalVisible(prev => !prev)}>
+            <Image
+              source={assets.settings}
+              style={styles.image}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
+      <FlashMessage
+        position={'top'}
+        animated={true}
+        animationDuration={1000}
+        floating={true}
+      />
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: '10%',
-  },
-  nifty_value_text: {
-    fontWeight: 'bold',
-    color: colors.black,
-  },
-  niftyValue: {
-    color: colors.bright_green,
-  },
-  niftyContainerView: {
-    borderRightWidth: 1,
-    borderRightColor: colors.grey,
-    width: '50%',
-    height: '350%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: '1%',
-  },
-  settingsView: {
-    height: '100%',
-    justifyContent: 'space-around',
+    height: '8%',
   },
   image: {
     height: 20,
     width: 20,
   },
-  headerView: {
-    flexDirection: 'row',
-    height: '30%',
+  titleText: {
+    fontWeight: 'bold',
+    color: colors.black,
+    paddingHorizontal: 50,
+  },
+  changePercentage: {
+    color: colors.bright_green,
   },
 });
 
-export default Header;
+export default Screen4;
