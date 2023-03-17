@@ -15,26 +15,36 @@ import BottomSheet, {
 import StockDetailsList from '../../components/StockDetailsList/StockDetailsList';
 import {assets} from '../../Assets';
 import alignment from '../../utils/alignment';
-import {styles} from './StockDetailsStyle'
+import {styles} from './StockDetailsStyle';
 import DeleteModal from '../../components/DeleteModal/DeleteModal';
+import StockPickModal from '../../components/StockDetailsList/StockPickModal';
 
 const screenHeight = Dimensions.get('window').height;
 
 function StockDetails() {
-  const [stockData, setStockData] = useState<any>();
+  const [stockData, setStockData] = useState<any>([]);
   const [norModalVisible, setNorModalVisible] = useState(false);
   const [trendModalVisible, setTrendModalVisible] = useState(false);
   const [dotModalVisible, setDotModalVisible] = useState(false);
-  const [showFlat, setShowFlat] = useState(true);
-  const [deleteModal,setDeleteModal]=useState(false);
+  const [showFlat, setShowFlat] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [colorChange, setColorChange] = useState(false);
   const ref = useRef<BottomSheetRefProps>(null);
 
   useEffect(() => {
     pushStockData();
   }, []);
 
+  // useEffect(()=>{
+  //   const timer=setInterval(()=>{
+  //     setColorChange(prevState=>!prevState)
+  //   },1000)
+
+  //   return ()=>clearInterval(timer)
+  // },[colorChange])
+
   const onPress = useCallback(() => {
-    ref?.current?.scrollTo(-300);
+    ref?.current?.scrollTo(-500);
   }, []);
 
   const componentHeaderBlock = () => {
@@ -66,11 +76,14 @@ function StockDetails() {
     return (
       <TouchableOpacity style={styles.stock}>
         <View style={{...alignment.row}}>
-          <Text>{index}</Text>
-          <Text style={{fontWeight: 'bold'}}>{item.companyName}</Text>
+          <Text style={{fontWeight: 'bold',color:colors.black,fontSize:17}}>{item.companyName}</Text>
           <Text style={styles.index}>{item.index}</Text>
         </View>
-        <View style={styles.stockContainer}>
+        <View
+          style={[
+            styles.stockContainer,
+            // {backgroundColor: colorChange ? '#DAF7A6' : '#FFB6C1'},
+          ]}>
           <Text style={styles.stockPriceText}>{item.value}</Text>
           <Text
             style={{
@@ -97,6 +110,9 @@ function StockDetails() {
       });
     }
     setStockData(StockArraydata);
+    setTimeout(() => {
+      console.log('Length',stockData.length)
+    }, 5000);
   };
 
   const onNorClose = () => {
@@ -111,13 +127,13 @@ function StockDetails() {
     setDotModalVisible(prevState => !prevState);
   };
 
-  const onDeleteClose =()=>{
-    setDeleteModal(prevState=>!prevState)
-  }
+  const onDeleteClose = () => {
+    setDeleteModal(prevState => !prevState);
+  };
 
-  const showDeleteModal=()=>{
-    setDeleteModal(prevState=>!prevState)
-  }
+  const showDeleteModal = () => {
+    setDeleteModal(prevState => !prevState);
+  };
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
@@ -126,12 +142,16 @@ function StockDetails() {
       <View style={{height: screenHeight - 200}}>
         <FlatList data={stockData} renderItem={renderListView} />
       </View>
-      {/* {showFlat ? <StockDetailsList /> : null} */}
-      <NorModal visible={norModalVisible} onClose={onNorClose} showDeleteModal={showDeleteModal}/>
+      {showFlat ? <StockPickModal /> : null}
+      <NorModal
+        visible={norModalVisible}
+        onClose={onNorClose}
+        showDeleteModal={showDeleteModal}
+      />
       <TrendModal visible={trendModalVisible} onClose={onTrendClose} />
       <DotModal visible={dotModalVisible} onClose={onDotModalClose} />
       <BottomSheet ref={ref} />
-      <DeleteModal visible={deleteModal} onClose={onDeleteClose}/>
+      <DeleteModal visible={deleteModal} onClose={onDeleteClose} />
     </GestureHandlerRootView>
   );
 }
