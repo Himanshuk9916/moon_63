@@ -16,6 +16,7 @@ import StockDetailsList from '../../components/StockDetailsList/StockDetailsList
 import {assets} from '../../Assets';
 import alignment from '../../utils/alignment';
 import {styles} from './StockDetailsStyle'
+import DeleteModal from '../../components/DeleteModal/DeleteModal';
 
 const screenHeight = Dimensions.get('window').height;
 
@@ -25,6 +26,7 @@ function StockDetails() {
   const [trendModalVisible, setTrendModalVisible] = useState(false);
   const [dotModalVisible, setDotModalVisible] = useState(false);
   const [showFlat, setShowFlat] = useState(true);
+  const [deleteModal,setDeleteModal]=useState(false);
   const ref = useRef<BottomSheetRefProps>(null);
 
   useEffect(() => {
@@ -109,6 +111,14 @@ function StockDetails() {
     setDotModalVisible(prevState => !prevState);
   };
 
+  const onDeleteClose =()=>{
+    setDeleteModal(prevState=>!prevState)
+  }
+
+  const showDeleteModal=()=>{
+    setDeleteModal(prevState=>!prevState)
+  }
+
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <Header />
@@ -116,11 +126,12 @@ function StockDetails() {
       <View style={{height: screenHeight - 200}}>
         <FlatList data={stockData} renderItem={renderListView} />
       </View>
-      {showFlat ? <StockDetailsList /> : null}
-      <NorModal visible={norModalVisible} onClose={onNorClose} />
+      {/* {showFlat ? <StockDetailsList /> : null} */}
+      <NorModal visible={norModalVisible} onClose={onNorClose} showDeleteModal={showDeleteModal}/>
       <TrendModal visible={trendModalVisible} onClose={onTrendClose} />
       <DotModal visible={dotModalVisible} onClose={onDotModalClose} />
       <BottomSheet ref={ref} />
+      <DeleteModal visible={deleteModal} onClose={onDeleteClose}/>
     </GestureHandlerRootView>
   );
 }

@@ -54,7 +54,9 @@ const NorModal = (props: any) => {
                 <Text style={{color: colors.black}}>{data}</Text>
               </TouchableOpacity>
               <View style={{width: 50, ...alignment.row_SpaceB}}>
+                <TouchableOpacity onPress={()=>props.showDeleteModal()}>
                 <Image source={assets.delete} style={styles.img} />
+                </TouchableOpacity>
                 <Image source={assets.heart} style={styles.img} />
               </View>
             </View>
